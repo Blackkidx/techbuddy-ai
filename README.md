@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 TechBuddy - AI-Powered Multilingual Communication Assistant
 ## 🎯 Features
 ===
@@ -52,3 +53,7 @@ TechBuddy - AI-Powered Multilingual Communication Assistant
 
 \- Duration: 8 weeks (Oct - Dec 2025)
 
+=======
+# techbuddy-ai
+AI-Powered Multilingual Communication Assistant for Slack
+>>>>>>> 4ff6234a9c9892b598ec53dadaa29e5af2d0e594
