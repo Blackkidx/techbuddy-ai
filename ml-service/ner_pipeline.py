@@ -101,12 +101,48 @@ class NERPipeline:
         return final_entities
     
     @classmethod
-    def from_pretrained(cls, model_path):
+    def from_pretrained(cls, model_path, token=None):
         """
-        Load NER Pipeline from pretrained model
+        Load NER Pipeline from pretrained model (supports Hugging Face Hub)
         """
+        from huggingface_hub import hf_hub_download
+        import tempfile
+        
         # Import here to avoid circular import
         from bert_crf_model import BertCRFForNER
+        
+        # Check if loading from Hugging Face Hub
+        is_hub_model = '/' in model_path and not os.path.exists(model_path)
+        
+        if is_hub_model:
+            print(f"📥 Downloading model from Hugging Face Hub: {model_path}")
+            # Create a temp directory to store downloaded files
+            temp_dir = tempfile.mkdtemp()
+            
+            # Download required files
+            files_to_download = [
+                'config.json',
+                'pytorch_model.bin',
+                'tokenizer.json',
+                'tokenizer_config.json',
+                'vocab.txt',
+                'label_mappings',
+                'special_tokens_map.json'
+            ]
+            
+            for filename in files_to_download:
+                try:
+                    downloaded_path = hf_hub_download(
+                        repo_id=model_path,
+                        filename=filename,
+                        token=token,
+                        local_dir=temp_dir
+                    )
+                    print(f"  ✅ Downloaded: {filename}")
+                except Exception as e:
+                    print(f"  ⚠️ Could not download {filename}: {e}")
+            
+            model_path = temp_dir
         
         # Load label mappings
         label_map_full = None
@@ -139,7 +175,7 @@ class NERPipeline:
 
         # FIX: แก้ไข Key Error: 'BERT + CRF' และตั้งค่า num_labels
         try:
-            config = AutoConfig.from_pretrained(model_path)
+            config = AutoConfig.from_pretrained(model_path, token=token)
         except KeyError as e:
             if str(e).strip("'") == 'BERT + CRF':
                 print("⚠️ AutoConfig failed with KeyError: 'BERT + CRF'. Attempting fix by modifying config.json.")
@@ -151,7 +187,7 @@ class NERPipeline:
                     with open(config_file_path, 'w', encoding='utf-8') as f:
                         json.dump(config_data, f, indent=2)
                     print("✅ config.json modified to set 'model_type': 'bert'. Reloading config.")
-                    config = AutoConfig.from_pretrained(model_path)
+                    config = AutoConfig.from_pretrained(model_path, token=token)
                 else:
                     raise
             else:
@@ -161,7 +197,7 @@ class NERPipeline:
         print(f"✅ Set config.num_labels to {config.num_labels} based on label_map.")
         
         # Load tokenizer
-        tokenizer = AutoTokenizer.from_pretrained(model_path)
+        tokenizer = AutoTokenizer.from_pretrained(model_path, token=token)
         
         # Load model with ignore_mismatched_sizes=True 
         model = BertCRFForNER.from_pretrained(
