@@ -1,8 +1,8 @@
 // mobile/src/config/config.js
 // ✅ FIXED VERSION - แก้ไขโครงสร้าง FRIENDS.REQUESTS
 
-// ✅ RAILWAY CLOUD URL
-export const API_BASE_URL = 'https://techbuddy-ai-production.up.railway.app';
+// ✅ USE NGROK URL (for local development)
+export const API_BASE_URL = 'https://cason-patellar-buena.ngrok-free.dev';
 
 export const API_ENDPOINTS = {
   AUTH: {
