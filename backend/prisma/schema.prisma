@@ -1,0 +1,202 @@
+// backend/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========================================
+// User & Authentication
+// ========================================
+
+model User {
+  id               Int      @id @default(autoincrement())
+  userId           String   @unique
+  username         String   @unique
+  email            String   @unique
+  password         String
+  avatarUrl        String?
+  nativeLanguage   String?
+  learningLanguage String?
+  isOnline         Boolean  @default(false)  
+  lastSeen         DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Chat Relations
+  sentMessages     Message[]       @relation("SentMessages")
+  receivedMessages Message[]       @relation("ReceivedMessages")
+  friendships      Friendship[]    @relation("UserFriendships")
+  friendOf         Friendship[]    @relation("FriendOf")
+  feedbacks        UserFeedback[]
+  
+  // Thai Tutor Relations
+  wordProgress     UserWordProgress[]
+
+  @@index([email])
+  @@index([userId])
+}
+
+// ========================================
+// Friendship System
+// ========================================
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  BLOCKED
+}
+
+model Friendship {
+  id        Int              @id @default(autoincrement())
+  userId    Int
+  friendId  Int
+  status    FriendshipStatus @default(PENDING)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  user   User @relation("UserFriendships", fields: [userId], references: [id], onDelete: Cascade)
+  friend User @relation("FriendOf", fields: [friendId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, friendId])
+  @@index([userId])
+  @@index([friendId])
+  @@index([status])
+}
+
+// ========================================
+// Messaging System
+// ========================================
+
+model Message {
+  id             Int      @id @default(autoincrement())
+  senderId       String 
+  receiverId     String 
+  content        String   @db.Text
+  language       String   @default("en")
+  intent         String?
+  confidence     Float?
+  translation    String? @db.Text
+  technicalTerms String[]
+
+
+  isRead         Boolean?  @default(false)  
+  readAt         DateTime?  
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // แก้ไข references จาก [id] (Int) ไปเป็น [userId] (String)
+  sender   User           @relation("SentMessages", fields: [senderId], references: [userId], onDelete: Cascade)
+  receiver User           @relation("ReceivedMessages", fields: [receiverId], references: [userId], onDelete: Cascade)
+  
+  feedback UserFeedback[]
+
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([createdAt])
+  @@index([isRead])
+}
+
+// ========================================
+// Feedback & Continuous Learning
+// ========================================
+
+model UserFeedback {
+  id              Int       @id @default(autoincrement())
+  userId          Int
+  messageId       Int?                      // ✅ Made optional for feedback without specific message
+  feedbackType    String                    // "intent", "translation", "ner"
+  originalText    String    @db.Text
+  aiPrediction    String    @db.Text
+  userCorrection  String?   @db.Text
+  isCorrect       Boolean   @default(true)
+  confidenceScore Float?
+  
+  // ✅ Language metadata for translation feedback
+  sourceLanguage  String?                   // Source language code (e.g., "en", "ja", "th")
+  targetLanguage  String?                   // Target language code (e.g., "en", "ja", "th")
+  
+  // ✅ Retraining tracking
+  usedForTraining Boolean   @default(false) // Whether this feedback has been used for retraining
+  retrainedAt     DateTime?                 // Timestamp when used for retraining
+  
+  createdAt       DateTime  @default(now())
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  message Message? @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([messageId])
+  @@index([feedbackType])
+  @@index([isCorrect])
+  @@index([usedForTraining])
+  @@index([sourceLanguage])
+  @@index([targetLanguage])
+}
+
+// ========================================
+// Thai Tutor System
+// ========================================
+
+model ThaiWord {
+  id                  Int      @id @default(autoincrement())
+  thaiWord            String   @unique
+  pronunciation       String   // Romanization (e.g., "sa-wat-dee")
+  englishTranslation  String
+  japaneseTranslation String
+  culturalContext     String? @db.Text
+  category            String   // "greeting", "food", "work", "tech", "conversation", "encouragement"
+  difficulty          String   // "beginner", "intermediate", "advanced"
+  audioUrl            String? // Path to TTS audio file
+  exampleSentence     String? @db.Text
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  // Relations
+  userProgress        UserWordProgress[]
+  dailyWords          DailyWord[]
+  
+  @@index([category])
+  @@index([difficulty])
+  @@index([category, difficulty])
+}
+
+model UserWordProgress {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  wordId       Int      // ✅ แก้ไขชื่อฟิลด์เป็น wordId
+  learned      Boolean   @default(false)  // User marked as learned
+  saved        Boolean   @default(false)  // User saved to personal dictionary
+  reviewCount  Int       @default(0)      // How many times reviewed
+  lastReviewed DateTime? // Last review timestamp
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  // Relations
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  word         ThaiWord  @relation(fields: [wordId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, wordId])
+  @@index([userId])
+  @@index([wordId]) // ✅ แก้ไขชื่อฟิลด์เป็น wordId
+  @@index([learned])
+  @@index([saved])
+}
+
+model DailyWord {
+  id        Int      @id @default(autoincrement())
+  wordId    Int      
+  date      DateTime @unique  // One word per day
+  createdAt DateTime @default(now())
+  
+  // Relations
+  word      ThaiWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
+  
+  @@index([date])
+}

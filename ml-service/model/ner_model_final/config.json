@@ -1,0 +1,10 @@
+{
+  "model_type": "bert",
+  "model_name": "bert-base-uncased",
+  "num_labels": 4,
+  "max_length": 128,
+  "test_f1": 1.0,
+  "test_precision": 1.0,
+  "test_recall": 1.0,
+  "training_samples": 840
+}

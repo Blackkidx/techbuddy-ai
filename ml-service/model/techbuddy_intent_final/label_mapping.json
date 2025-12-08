@@ -1,0 +1,14 @@
+{
+  "label2id": {
+    "Problem": 0,
+    "Question": 1,
+    "Request": 2,
+    "Update": 3
+  },
+  "id2label": {
+    "0": "Problem",
+    "1": "Question",
+    "2": "Request",
+    "3": "Update"
+  }
+}

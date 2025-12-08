@@ -1,0 +1,14 @@
+{
+  "tag2idx": {
+    "PAD": 0,
+    "B-TECH": 1,
+    "I-TECH": 2,
+    "O": 3
+  },
+  "idx2tag": {
+    "0": "PAD",
+    "1": "B-TECH",
+    "2": "I-TECH",
+    "3": "O"
+  }
+}
