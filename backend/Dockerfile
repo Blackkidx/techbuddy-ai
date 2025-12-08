@@ -1,7 +1,10 @@
 # TechBuddy Backend Dockerfile
-# Node.js 18 LTS
+# Node.js 18 LTS - Full version (not Alpine) for Prisma compatibility
 
-FROM node:18-alpine
+FROM node:18-slim
+
+# Install OpenSSL and other dependencies required by Prisma
+RUN apt-get update -y && apt-get install -y openssl libssl-dev ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
