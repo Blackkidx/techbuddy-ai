@@ -1,8 +1,8 @@
 // mobile/src/config/config.js
 // ✅ FIXED VERSION - แก้ไขโครงสร้าง FRIENDS.REQUESTS
 
-// ✅ USE NGROK URL
-export const API_BASE_URL = 'https://cason-patellar-buena.ngrok-free.dev';
+// ✅ RAILWAY CLOUD URL
+export const API_BASE_URL = 'https://techbuddy-ai-production.up.railway.app';
 
 export const API_ENDPOINTS = {
   AUTH: {
@@ -33,8 +33,8 @@ export const API_ENDPOINTS = {
     LIST: `${API_BASE_URL}/api/friends/list`,
     // ✅ แก้ไข: เปลี่ยน REQUESTS เป็น Object เพื่อรองรับ .PENDING
     REQUESTS: {
-        ALL: `${API_BASE_URL}/api/friends/requests`, // Endpoint หลัก
-        PENDING: `${API_BASE_URL}/api/friends/requests/pending`, // ✅ เพิ่ม Endpoint ที่ FriendListScreen ต้องการ
+      ALL: `${API_BASE_URL}/api/friends/requests`, // Endpoint หลัก
+      PENDING: `${API_BASE_URL}/api/friends/requests/pending`, // ✅ เพิ่ม Endpoint ที่ FriendListScreen ต้องการ
     },
     ADD: `${API_BASE_URL}/api/friends/add`,
     ACCEPT: (friendshipId) => `${API_BASE_URL}/api/friends/accept/${friendshipId}`,
@@ -96,7 +96,7 @@ export const COLORS = {
   TEXT_SECONDARY: '#666',
   TEXT_TERTIARY: '#999',
   PLACEHOLDER: '#ccc',
-  
+
   // Thai Tutor specific colors
   THAI: {
     PRIMARY: '#FF6B6B',
@@ -137,20 +137,20 @@ export const SIZES = {
   FONT_XLARGE: 20,
   FONT_TITLE: 24,
   FONT_HEADER: 28,
-  
+
   // Spacing
   PADDING: 16,
   MARGIN: 16,
   RADIUS: 12,
   RADIUS_SMALL: 8,
   RADIUS_LARGE: 16,
-  
+
   // Avatar
   AVATAR_SMALL: 32,
   AVATAR_MEDIUM: 48,
   AVATAR_LARGE: 64,
   AVATAR_XLARGE: 80,
-  
+
   // Components
   BUTTON_HEIGHT: 44,
   INPUT_HEIGHT: 44,
