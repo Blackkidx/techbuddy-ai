@@ -1,10 +1,8 @@
 # ml-service/app.py (Improved Version - Fixed Japanese NER & Translation)
-# Updated for Hugging Face Hub deployment
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import torch
-import os
 from transformers import (
     AutoTokenizer, 
     AutoModelForSequenceClassification,
@@ -13,13 +11,6 @@ from transformers import (
 import re
 import warnings
 warnings.filterwarnings('ignore')
-
-# Hugging Face Authentication
-HF_TOKEN = os.environ.get('HF_TOKEN', None)
-if HF_TOKEN:
-    print(f"🔑 Hugging Face Token loaded")
-else:
-    print("⚠️ No HF_TOKEN found, will use public models only")
 
 app = Flask(__name__)
 CORS(app)
@@ -251,35 +242,35 @@ ENGLISH_TECH_TERMS = [
 # ==========================================
 
 def load_intent_model():
-    """Load Intent Classification Model from Hugging Face Hub"""
+    """Load Intent Classification Model"""
     global intent_model, intent_tokenizer, intent_labels
     
     try:
-        print("📦 Loading Intent Model from Hugging Face Hub...")
-        model_path = "Blackkidx/INTENT"  # Your HuggingFace repo
+        print("📦 Loading Intent Model...")
+        model_path = "./model/techbuddy_intent_final"
         
-        intent_tokenizer = AutoTokenizer.from_pretrained(model_path, token=HF_TOKEN)
-        intent_model = AutoModelForSequenceClassification.from_pretrained(model_path, token=HF_TOKEN)
+        intent_tokenizer = AutoTokenizer.from_pretrained(model_path)
+        intent_model = AutoModelForSequenceClassification.from_pretrained(model_path)
         intent_labels = ["Problem", "Question", "Request", "Update"]
         
-        print("✅ Intent Model loaded successfully from HuggingFace!")
+        print("✅ Intent Model loaded successfully!")
         return True
     except Exception as e:
         print(f"❌ Error loading Intent Model: {e}")
         return False
 
 def load_ner_model():
-    """Load NER Model (BERT+CRF) from Hugging Face Hub"""
+    """Load NER Model (BERT+CRF)"""
     global ner_pipeline
     
     try:
-        print("📦 Loading NER Model (BERT+CRF) from Hugging Face Hub...")
-        model_path = "Blackkidx/NER"  # Your HuggingFace repo
+        print("📦 Loading NER Model (BERT+CRF)...")
+        model_path = "./model/ner_model_final"
         
         from ner_pipeline import NERPipeline
-        ner_pipeline = NERPipeline.from_pretrained(model_path, token=HF_TOKEN)
+        ner_pipeline = NERPipeline.from_pretrained(model_path)
         
-        print("✅ NER Model (BERT+CRF) loaded successfully from HuggingFace!")
+        print("✅ NER Model (BERT+CRF) loaded successfully!")
         return True
         
     except Exception as e:
