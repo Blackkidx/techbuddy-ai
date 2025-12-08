@@ -24,11 +24,8 @@ RUN npx prisma generate
 # Copy source code
 COPY . .
 
-# Make start script executable
-RUN chmod +x start.sh
-
 # Expose port
 EXPOSE 3000
 
-# Start with migration script
-CMD ["./start.sh"]
+# Run migrations and start server (inline command)
+CMD npx prisma migrate deploy && npm start
