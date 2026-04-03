@@ -47,3 +47,4 @@ ENV/
 *.tmp
 *.temp
 "hf-space-temp/" 
+hf-space-temp/
