@@ -5,10 +5,8 @@ import { io } from 'socket.io-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ⚠️ เปลี่ยน URL ให้ตรงกับ Backend ของคุณ
-// สำหรับ Android Emulator: http://10.0.2.2:3000
-// สำหรับ iOS Simulator: http://localhost:3000
-// สำหรับ Physical Device: http://<YOUR_PC_IP>:3000
-const SOCKET_URL = 'http://10.0.2.2:3000';
+// Production URL (Render)
+const SOCKET_URL = 'https://techbuddy-ai.onrender.com';
 
 class SocketService {
     constructor() {

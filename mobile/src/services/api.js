@@ -4,9 +4,9 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// ⭐ API Base URL (เปลี่ยนตาม backend ของคุณ)
-const API_BASE_URL = 'https://cason-patellar-buena.ngrok-free.dev';
-// const API_BASE_URL = 'http://192.168.151.125:3000'; // ใช้ตัวนี้ถ้าไม่ใช้ ngrok
+// ⭐ API Base URL — Production (Render)
+const API_BASE_URL = 'https://techbuddy-ai.onrender.com';
+// const API_BASE_URL = 'http://10.0.2.2:3000'; // Local Android Emulator
 
 // ==========================================
 // ✅ Create Axios Instance

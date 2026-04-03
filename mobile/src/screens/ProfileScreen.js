@@ -23,7 +23,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { COLORS, SPACING, RADIUS, TEXT_STYLES, SHADOWS } from '../theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const BASE_URL = 'https://cason-patellar-buena.ngrok-free.dev';
+const BASE_URL = 'https://techbuddy-ai.onrender.com';
 
 const ProfileScreen = ({ navigation }) => {
   const { user, logout } = useAuth();

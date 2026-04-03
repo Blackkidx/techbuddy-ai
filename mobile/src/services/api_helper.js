@@ -4,10 +4,9 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// ใช้ ngrok URL (เปลี่ยนทุกครั้งที่รัน ngrok ใหม่)
-// ใช้ Local URL สำหรับ Android Emulator
-const BASE_URL = 'http://10.0.2.2:3000/api';
-// const BASE_URL = 'https://cason-patellar-buena.ngrok-free.dev/api';
+// Production URL (Render)
+const BASE_URL = 'https://techbuddy-ai.onrender.com/api';
+// const BASE_URL = 'http://10.0.2.2:3000/api'; // Local Android Emulator
 
 // ฟังก์ชันช่วย get token
 export const getToken = async () => {
