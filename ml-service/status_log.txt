@@ -1,0 +1,332 @@
+On branch hf-deploy
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   ../.gitignore
+	new file:   ../.vscode/settings.json
+	new file:   ../DEPLOYMENT_PLAN.md
+	new file:   ../LICENSE
+	new file:   ../README.md
+	new file:   ../backend/.gitignore
+	new file:   ../backend/addTestUsers.js
+	new file:   ../backend/check_friends.js
+	new file:   ../backend/check_users.js
+	new file:   ../backend/cleanup-orphaned-friendships.js
+	new file:   ../backend/controllers/authController.js
+	new file:   ../backend/controllers/chatController.js
+	new file:   ../backend/controllers/feedbackController.js
+	new file:   ../backend/controllers/thaiTutor.controller.js
+	new file:   ../backend/middleware/auth.js
+	new file:   ../backend/package-lock.json
+	new file:   ../backend/package.json
+	new file:   ../backend/prisma/fix_orphaned_friendships.sql
+	new file:   ../backend/prisma/migrations/20251104085838_init/migration.sql
+	new file:   ../backend/prisma/migrations/20251120104039_add_user_feedback_table/migration.sql
+	new file:   ../backend/prisma/migrations/20251127003015_add_friendship_status_enum/migration.sql
+	new file:   ../backend/prisma/migrations/20251129054123_add_thai_tutor_system/migration.sql
+	new file:   ../backend/prisma/migrations/20251129060403_add_user_online_status/migration.sql
+	new file:   ../backend/prisma/migrations/20251201015714_/migration.sql
+	new file:   ../backend/prisma/migrations/20251201022914_add_read_status/migration.sql
+	new file:   ../backend/prisma/migrations/20251203233952_add_feedback_language_fields/migration.sql
+	new file:   ../backend/prisma/migrations/migration_lock.toml
+	new file:   ../backend/prisma/schema.prisma
+	new file:   ../backend/prisma/seed-thai-words.js
+	new file:   ../backend/prisma/seed.js
+	new file:   ../backend/public/audio/thai/thai_word_1.mp3
+	new file:   ../backend/public/audio/thai/thai_word_10.mp3
+	new file:   ../backend/public/audio/thai/thai_word_11.mp3
+	new file:   ../backend/public/audio/thai/thai_word_12.mp3
+	new file:   ../backend/public/audio/thai/thai_word_13.mp3
+	new file:   ../backend/public/audio/thai/thai_word_14.mp3
+	new file:   ../backend/public/audio/thai/thai_word_15.mp3
+	new file:   ../backend/public/audio/thai/thai_word_16.mp3
+	new file:   ../backend/public/audio/thai/thai_word_17.mp3
+	new file:   ../backend/public/audio/thai/thai_word_2.mp3
+	new file:   ../backend/public/audio/thai/thai_word_3.mp3
+	new file:   ../backend/public/audio/thai/thai_word_4.mp3
+	new file:   ../backend/public/audio/thai/thai_word_5.mp3
+	new file:   ../backend/public/audio/thai/thai_word_6.mp3
+	new file:   ../backend/public/audio/thai/thai_word_7.mp3
+	new file:   ../backend/public/audio/thai/thai_word_8.mp3
+	new file:   ../backend/public/audio/thai/thai_word_9.mp3
+	new file:   ../backend/routes/auth.js
+	new file:   ../backend/routes/chat.js
+	new file:   ../backend/routes/feedback.js
+	new file:   ../backend/routes/friends.js
+	new file:   ../backend/routes/thaiTutor.routes.js
+	new file:   ../backend/routes/users.js
+	new file:   ../backend/scripts/generate-all-audio.js
+	new file:   ../backend/server.js
+	new file:   ../backend/services/aiService.js
+	new file:   ../backend/services/mlService.js
+	new file:   ../backend/services/tts.service.js
+	new file:   ../backend/src/socket/handlers/messageHandler.js
+	new file:   ../backend/src/socket/handlers/typingHandler.js
+	new file:   ../backend/src/socket/index.js
+	new file:   ../backend/src/socket/socketAuth.js
+	new file:   ../backend/uploads/avatars/avatar-TB000001-1764205904949-189245069.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000001-1764413188124-271150393.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000001-1764658822830-944882251.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000001-1764814301907-260614077.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000003-1763523715206-944125876.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000004-1763524543871-519225247.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000004-1764802393262-664594368.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000005-1763719956275-448365210.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000007-1763524684435-764981236.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000008-1763603610009-654119192.jpeg
+	new file:   ../backend/uploads/avatars/avatar-TB000009-1763604953777-656593956.jpeg
+	new file:   ../backend/utils/generateUserId.js
+	new file:   .env.example
+	new file:   Dockerfile
+	new file:   app.py
+	new file:   bert_crf_model.py
+	new file:   download_models.py
+	new file:   glossary.json
+	new file:   llm_service.py
+	new file:   model/ner_model_final/config.json
+	new file:   model/ner_model_final/label_mappings.json
+	new file:   model/ner_model_final/special_tokens_map.json
+	new file:   model/ner_model_final/tokenizer.json
+	new file:   model/ner_model_final/tokenizer_config.json
+	new file:   model/ner_model_final/vocab.txt
+	new file:   model/techbuddy_intent_final/config.json
+	new file:   model/techbuddy_intent_final/label_mapping.json
+	new file:   model/techbuddy_intent_final/special_tokens_map.json
+	new file:   model/techbuddy_intent_final/tokenizer.json
+	new file:   model/techbuddy_intent_final/tokenizer_config.json
+	new file:   model/techbuddy_intent_final/vocab.txt
+	new file:   ner_pipeline.py
+	new file:   rag_service.py
+	new file:   requirements.txt
+	new file:   ../mobile/.gitignore
+	new file:   ../mobile/.vscode/extensions.json
+	new file:   ../mobile/.vscode/settings.json
+	new file:   ../mobile/App.js
+	new file:   ../mobile/README.md
+	new file:   ../mobile/app.json
+	new file:   ../mobile/assets/images/android-icon-background.png
+	new file:   ../mobile/assets/images/android-icon-foreground.png
+	new file:   ../mobile/assets/images/android-icon-monochrome.png
+	new file:   ../mobile/assets/images/favicon.png
+	new file:   ../mobile/assets/images/icon.png
+	new file:   ../mobile/assets/images/partial-react-logo.png
+	new file:   ../mobile/assets/images/react-logo.png
+	new file:   ../mobile/assets/images/react-logo@2x.png
+	new file:   ../mobile/assets/images/react-logo@3x.png
+	new file:   ../mobile/assets/images/splash-icon.png
+	new file:   ../mobile/components/external-link.tsx
+	new file:   ../mobile/components/haptic-tab.tsx
+	new file:   ../mobile/components/hello-wave.tsx
+	new file:   ../mobile/components/parallax-scroll-view.tsx
+	new file:   ../mobile/components/themed-text.tsx
+	new file:   ../mobile/components/themed-view.tsx
+	new file:   ../mobile/components/ui/collapsible.tsx
+	new file:   ../mobile/components/ui/icon-symbol.ios.tsx
+	new file:   ../mobile/components/ui/icon-symbol.tsx
+	new file:   ../mobile/config.js
+	new file:   ../mobile/constants/theme.ts
+	new file:   ../mobile/eslint.config.js
+	new file:   ../mobile/hooks/use-color-scheme.ts
+	new file:   ../mobile/hooks/use-color-scheme.web.ts
+	new file:   ../mobile/hooks/use-theme-color.ts
+	new file:   ../mobile/index.js
+	new file:   ../mobile/metro.config.js
+	new file:   ../mobile/package-lock.json
+	new file:   ../mobile/package.json
+	new file:   ../mobile/scripts/reset-project.js
+	new file:   ../mobile/src/components/AIAnalysisView.js
+	new file:   ../mobile/src/components/AddFriendModal.js
+	new file:   ../mobile/src/components/AudioPlayer.js
+	new file:   ../mobile/src/components/CustomToast.js
+	new file:   ../mobile/src/components/DailyWordCard.js
+	new file:   ../mobile/src/components/FeedbackButton.js
+	new file:   ../mobile/src/components/MessageBubble.js
+	new file:   ../mobile/src/config/config.js
+	new file:   ../mobile/src/contexts/AuthContext.js
+	new file:   ../mobile/src/contexts/SocketContext.js
+	new file:   ../mobile/src/navigation/AppNavigator.js
+	new file:   ../mobile/src/screens/CategoriesScreen.js
+	new file:   ../mobile/src/screens/ChatScreen.js
+	new file:   ../mobile/src/screens/DailyWordScreen.js
+	new file:   ../mobile/src/screens/EditProfileScreen.js
+	new file:   ../mobile/src/screens/FriendListScreen.js
+	new file:   ../mobile/src/screens/FriendRequestsScreen.js
+	new file:   ../mobile/src/screens/LoginScreen.js
+	new file:   ../mobile/src/screens/MyDictionaryScreen.js
+	new file:   ../mobile/src/screens/ProfileScreen.js
+	new file:   ../mobile/src/screens/RegisterScreen.js
+	new file:   ../mobile/src/screens/WordDetailScreen.js
+	new file:   ../mobile/src/screens/WordListScreen.js
+	new file:   ../mobile/src/services/api.js
+	new file:   ../mobile/src/services/api_helper.js
+	new file:   ../mobile/src/services/authService.js
+	new file:   ../mobile/src/services/feedbackService.js
+	new file:   ../mobile/src/services/socket.service.js
+	new file:   ../mobile/src/services/thaiTutorService.js
+	new file:   ../mobile/src/theme/colors.js
+	new file:   ../mobile/src/theme/index.js
+	new file:   ../mobile/src/theme/shadows.js
+	new file:   ../mobile/src/theme/spacing.js
+	new file:   ../mobile/src/theme/typography.js
+	new file:   ../mobile/src/utils/friendHelpers.js
+	new file:   ../mobile/tsconfig.json
+	new file:   ../public/audio/thai/thai_word_1.mp3
+	new file:   ../public/audio/thai/thai_word_12.mp3
+	new file:   ../public/audio/thai/thai_word_16.mp3
+	new file:   ../public/audio/thai/thai_word_5.mp3
+	new file:   ../public/audio/thai/thai_word_6.mp3
+	new file:   ../public/audio/thai/thai_word_8.mp3
+	new file:   ../requirements.txt
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../.gitignore
+	modified:   ../.vscode/settings.json
+	deleted:    ../DEPLOYMENT_PLAN.md
+	modified:   ../README.md
+	deleted:    ../backend/addTestUsers.js
+	deleted:    ../backend/check_friends.js
+	deleted:    ../backend/check_users.js
+	deleted:    ../backend/cleanup-orphaned-friendships.js
+	modified:   ../backend/controllers/authController.js
+	modified:   ../backend/controllers/chatController.js
+	modified:   ../backend/controllers/feedbackController.js
+	modified:   ../backend/controllers/thaiTutor.controller.js
+	modified:   ../backend/middleware/auth.js
+	modified:   ../backend/package-lock.json
+	modified:   ../backend/package.json
+	deleted:    ../backend/prisma/fix_orphaned_friendships.sql
+	deleted:    ../backend/prisma/migrations/20251104085838_init/migration.sql
+	deleted:    ../backend/prisma/migrations/20251120104039_add_user_feedback_table/migration.sql
+	deleted:    ../backend/prisma/migrations/20251127003015_add_friendship_status_enum/migration.sql
+	deleted:    ../backend/prisma/migrations/20251129054123_add_thai_tutor_system/migration.sql
+	deleted:    ../backend/prisma/migrations/20251129060403_add_user_online_status/migration.sql
+	deleted:    ../backend/prisma/migrations/20251201015714_/migration.sql
+	deleted:    ../backend/prisma/migrations/20251201022914_add_read_status/migration.sql
+	deleted:    ../backend/prisma/migrations/20251203233952_add_feedback_language_fields/migration.sql
+	deleted:    ../backend/prisma/migrations/migration_lock.toml
+	deleted:    ../backend/prisma/schema.prisma
+	deleted:    ../backend/prisma/seed-thai-words.js
+	deleted:    ../backend/prisma/seed.js
+	modified:   ../backend/routes/feedback.js
+	modified:   ../backend/routes/friends.js
+	modified:   ../backend/routes/users.js
+	modified:   ../backend/server.js
+	modified:   ../backend/services/mlService.js
+	deleted:    ../backend/src/socket/handlers/messageHandler.js
+	deleted:    ../backend/src/socket/handlers/typingHandler.js
+	deleted:    ../backend/src/socket/index.js
+	deleted:    ../backend/src/socket/socketAuth.js
+	deleted:    ../backend/uploads/avatars/avatar-TB000001-1764205904949-189245069.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000001-1764413188124-271150393.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000001-1764658822830-944882251.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000001-1764814301907-260614077.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000003-1763523715206-944125876.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000004-1763524543871-519225247.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000004-1764802393262-664594368.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000005-1763719956275-448365210.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000007-1763524684435-764981236.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000008-1763603610009-654119192.jpeg
+	deleted:    ../backend/uploads/avatars/avatar-TB000009-1763604953777-656593956.jpeg
+	modified:   ../mobile/.vscode/settings.json
+	deleted:    ../mobile/App.js
+	modified:   ../mobile/app.json
+	deleted:    ../mobile/components/external-link.tsx
+	deleted:    ../mobile/components/hello-wave.tsx
+	deleted:    ../mobile/components/parallax-scroll-view.tsx
+	deleted:    ../mobile/components/themed-text.tsx
+	deleted:    ../mobile/components/themed-view.tsx
+	deleted:    ../mobile/components/ui/collapsible.tsx
+	deleted:    ../mobile/components/ui/icon-symbol.ios.tsx
+	deleted:    ../mobile/components/ui/icon-symbol.tsx
+	deleted:    ../mobile/constants/theme.ts
+	deleted:    ../mobile/hooks/use-color-scheme.ts
+	deleted:    ../mobile/hooks/use-color-scheme.web.ts
+	deleted:    ../mobile/hooks/use-theme-color.ts
+	modified:   ../mobile/metro.config.js
+	modified:   ../mobile/package-lock.json
+	modified:   ../mobile/package.json
+	modified:   ../mobile/src/components/AIAnalysisView.js
+	modified:   ../mobile/src/components/AudioPlayer.js
+	modified:   ../mobile/src/components/DailyWordCard.js
+	modified:   ../mobile/src/components/MessageBubble.js
+	modified:   ../mobile/src/config/config.js
+	modified:   ../mobile/src/contexts/AuthContext.js
+	deleted:    ../mobile/src/contexts/SocketContext.js
+	deleted:    ../mobile/src/navigation/AppNavigator.js
+	modified:   ../mobile/src/screens/CategoriesScreen.js
+	modified:   ../mobile/src/screens/ChatScreen.js
+	modified:   ../mobile/src/screens/DailyWordScreen.js
+	modified:   ../mobile/src/screens/EditProfileScreen.js
+	modified:   ../mobile/src/screens/FriendListScreen.js
+	modified:   ../mobile/src/screens/FriendRequestsScreen.js
+	modified:   ../mobile/src/screens/LoginScreen.js
+	modified:   ../mobile/src/screens/MyDictionaryScreen.js
+	modified:   ../mobile/src/screens/ProfileScreen.js
+	modified:   ../mobile/src/screens/RegisterScreen.js
+	modified:   ../mobile/src/screens/WordDetailScreen.js
+	modified:   ../mobile/src/screens/WordListScreen.js
+	modified:   ../mobile/src/services/api.js
+	modified:   ../mobile/src/services/api_helper.js
+	modified:   ../mobile/src/services/authService.js
+	deleted:    ../mobile/src/services/socket.service.js
+	modified:   ../mobile/src/services/thaiTutorService.js
+	modified:   ../mobile/src/theme/colors.js
+	modified:   ../mobile/src/theme/index.js
+	modified:   ../mobile/src/theme/shadows.js
+	modified:   ../mobile/src/theme/spacing.js
+	modified:   ../mobile/src/theme/typography.js
+	modified:   ../mobile/tsconfig.json
+	deleted:    ../public/audio/thai/thai_word_1.mp3
+	deleted:    ../public/audio/thai/thai_word_12.mp3
+	deleted:    ../public/audio/thai/thai_word_16.mp3
+	deleted:    ../public/audio/thai/thai_word_5.mp3
+	deleted:    ../public/audio/thai/thai_word_6.mp3
+	deleted:    ../public/audio/thai/thai_word_8.mp3
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../backend/.env.example
+	../backend/lib/
+	../backend/render.yaml
+	../hf-space-temp/
+	push_log.txt
+	remote_list.txt
+	status_log.txt
+	../mobile/app/
+	../mobile/babel.config.js
+	../mobile/eas.json
+	../mobile/global.css
+	../mobile/lib/
+	../mobile/nativewind-env.d.ts
+	../mobile/src/components/AttachmentBubble.js
+	../mobile/src/components/ChannelMessageBubble.js
+	../mobile/src/components/LoadingSpinner.js
+	../mobile/src/components/ServerMembersSheet.js
+	../mobile/src/components/icons/
+	../mobile/src/contexts/SettingsContext.js
+	../mobile/src/contexts/ThemeContext.js
+	../mobile/src/contexts/TranslationContext.js
+	../mobile/src/i18n/
+	../mobile/src/screens/ChannelChatScreen.js
+	../mobile/src/screens/CreateChannelScreen.js
+	../mobile/src/screens/CreateServerScreen.js
+	../mobile/src/screens/EditServerScreen.js
+	../mobile/src/screens/InviteScreen.js
+	../mobile/src/screens/JoinServerScreen.js
+	../mobile/src/screens/ManageCategoriesScreen.js
+	../mobile/src/screens/ManageMembersScreen.js
+	../mobile/src/screens/ServerHomeScreen.js
+	../mobile/src/screens/ServerListScreen.js
+	../mobile/src/screens/ServerSettingsScreen.js
+	../mobile/src/screens/SettingsScreen.js
+	../mobile/src/services/channelService.js
+	../mobile/src/services/serverService.js
+	../mobile/src/services/supabase.js
+	../mobile/src/utils/responsive.js
+	../mobile/tailwind.config.js
+	../supabase/
+
